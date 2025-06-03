@@ -19,7 +19,9 @@ pub struct PlaylistDetailsResponse {
     data: ServerResponse,
 }
 
-pub async fn playlist_details(Json(body): Json<PlaylistDetailsBody>) -> Result<Json<PlaylistDetailsResponse>, ApiError> {
+pub async fn playlist_details(
+    Json(body): Json<PlaylistDetailsBody>,
+) -> Result<Json<PlaylistDetailsResponse>, ApiError> {
     let Ok(api_key) = std::env::var("YOUTUBE_API_KEY") else {
         let error = ApiError::new(
             vec![String::from("Youtube API key not available")],
@@ -29,7 +31,6 @@ pub async fn playlist_details(Json(body): Json<PlaylistDetailsBody>) -> Result<J
     };
 
     let mut server_response = ServerResponse::default();
-
 
     let video_ids = playlist_items(&api_key, &body.list, &mut server_response).await?;
     playlist(&api_key, &body.list, &mut server_response).await?;

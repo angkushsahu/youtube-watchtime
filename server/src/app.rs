@@ -1,5 +1,8 @@
 use axum::{
-    http::{self, HeaderValue, Method}, middleware::from_fn, routing::{get, post}, Router
+    Router,
+    http::{self, HeaderValue, Method},
+    middleware::from_fn,
+    routing::{get, post},
 };
 use tower_http::{
     cors::CorsLayer,

@@ -28,7 +28,9 @@ pub async fn videos(
             .unwrap();
         let data: VideoSchema = response.json().await.map_err(|_| {
             ApiError::new(
-                vec![String::from("Invalid response for 'Videos' was returned from youtube")],
+                vec![String::from(
+                    "Invalid response for 'Videos' was returned from youtube",
+                )],
                 StatusCode::INTERNAL_SERVER_ERROR,
             )
         })?;

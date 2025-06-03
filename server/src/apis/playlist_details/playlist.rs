@@ -25,7 +25,9 @@ pub async fn playlist(
         .unwrap();
     let data: PlaylistResponse = response.json().await.map_err(|_| {
         ApiError::new(
-            vec![String::from("Invalid response for 'Playlist' was returned from youtube")],
+            vec![String::from(
+                "Invalid response for 'Playlist' was returned from youtube",
+            )],
             StatusCode::INTERNAL_SERVER_ERROR,
         )
     })?;
